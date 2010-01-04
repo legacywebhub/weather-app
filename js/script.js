@@ -17,9 +17,8 @@ const popularLocations = document.getElementsByClassName('popular'),
     country = document.getElementById("country"),
     form = document.forms["my-form"],
     searchInput = form["city"];
-let i = 0,
-    txt = 'Loading...',
-    speed = 50;
+
+let weatherIcon = '';
 
 /* --------------- Code section --------------- */
 // checking if popular locations were clicked
@@ -38,7 +37,6 @@ form.addEventListener('submit', (e)=> {
 menu.addEventListener('click', showSideBar);
 closeIcon.addEventListener('click', closeSideBar);
 popular.addEventListener('click', ()=>{popularList.classList.toggle("display-sub-list");});
-other.addEventListener('click', ()=>{otherList.classList.toggle("display-sub-list");});
 
 
 /* --------------- Functions --------------- */
@@ -58,15 +56,6 @@ function closeSideBar() {
     sideBar.style.right = "-100rem";
 };
 
-//function to display animation text while fetching data
-function loadAnimation() {
-    if (i < txt.length) {
-      message.innerHTML += txt.charAt(i);
-      i++;
-      setTimeout(loadAnimation, speed);
-    }
-}
-
 // function to search weather and update the dom
 async function searchWeather(location) {
     weatherContainer.style.display = "none";
@@ -75,58 +64,63 @@ async function searchWeather(location) {
     const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=01496641e8e04d3c4d8473dba298674b`;
 
     //loading text animation
-    message.innerHTML =  '';
-    loadAnimation();
+    message.innerHTML =  '<img id="animation" src="images/loading.gif">';
+    console.log("loading animation mounted.. About to fetch data");
 
     try {
         // fetching from API
         const ourRequest = await fetch(url);
         // converting our response from string to json format
         const data = await ourRequest.json();
-        console.log(data);
+        console.log("data fetched:", data);
 
         // determining weather icon to display in the DOM
         if (data.weather[0].main == "Sun") {
-            iconContainer.innerHTML = '<i class="fas fa-sun fa-3x"></i>';
+            weatherIcon = '<i class="fas fa-sun fa-3x"></i>';
         } else if (data.weather[0].main == "Rain") {
-            iconContainer.innerHTML = '<i class="fas fa-cloud-rain fa-3x"></i>';
+            weatherIcon = '<i class="fas fa-cloud-rain fa-3x"></i>';
         } else if (data.weather[0].main == "Clouds") {
-            iconContainer.innerHTML = '<i class="fas fa-cloud fa-3x"></i>';
+            weatherIcon = '<i class="fas fa-cloud fa-3x"></i>';
         } else if (data.weather[0].main == "Clear") {
-            iconContainer.innerHTML = '<i class="fa fa-sun fa-3x"></i>';
+            weatherIcon = '<i class="fa fa-sun fa-3x"></i>';
         } else if (data.weather[0].main == "Haze") {
-            iconContainer.innerHTML = '<img src="images/haze.png" width="130">';
+            weatherIcon = '<img src="images/haze.png" width="130">';
         } else if (data.weather[0].main == "Fog") {
-            iconContainer.innerHTML = '<img src="images/fog.png" width="100">';
+            weatherIcon = '<img src="images/fog.png" width="100">';
         } else if (data.weather[0].main == "Snow") {
-            iconContainer.innerHTML = '<img src="images/snow.png" width="100">';
+            weatherIcon = '<img src="images/snow.png" width="100">';
         } else if (data.weather[0].main == "Smoke") {
-            iconContainer.innerHTML = '<img src="images/smoke.png" width="100">';
+            weatherIcon = '<img src="images/smoke.png" width="100">';
         } else {
-            iconContainer.innerHTML = '';
+            weatherIcon = '';
         }
 
+        console.log("updating the DOM..");
+
         // updating the DOM data
+        iconContainer.innerHTML = weatherIcon;
         temperature.innerText = Math.round(data.main.temp - 273);
         pressure.innerText = data.main.pressure / 1000;
         humidy.innerText = Math.round(data.main.humidity);
         weather.innerText = data.weather[0].description;
         country.innerText = data.sys.country.toUpperCase();
+        message.innerText = data.name.toUpperCase();
 
-        // waiting for our animation to finish before displaying the DOM
+        // displaying DOM contents
+        weatherContainer.style.display = "contents";
+
+        console.log("DOM updated");
+
+        // resetting our set input value
+        searchInput.value = '';
+
+    } catch (err) { 
+        // catching/handling errors
         setTimeout(()=>{
-            message.innerHTML =  '';
-            message.innerText = data.name.toUpperCase();
-            weatherContainer.style.display = "contents";
-            searchInput.value = '';
-        }, 3000);
-    } catch (err) { // catching any error
-        setTimeout(()=>{
-        message.innerText =  '';
+        console.log(err)
         message.innerText = 'Sorry there was an error while fetching weather data';
         weatherContainer.style.display = "none";
-        }, 10000);
+        }, 30000);
     }
-    // resetting our animation variable
-    i = 0;
+
 }

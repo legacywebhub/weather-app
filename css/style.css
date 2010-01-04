@@ -184,6 +184,10 @@ section {
     font-weight: bold;
 }
 
+#animation {
+    width: 10rem;
+}
+
 #section-2 {
     text-align: center;
     padding: 3rem 0;
@@ -267,5 +271,8 @@ footer {
         letter-spacing: .2rem;
         font-weight: bold;
         margin: .5rem 0;
+    }
+    #animation {
+        width: 7rem;
     }
 }
