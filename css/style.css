@@ -1,0 +1,224 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+}
+
+body {
+    background:linear-gradient(135deg,
+    #029edcc0 0%,
+    #03519fd0 100%),
+    url('../images/night-view.jpg');
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+    position: relative;
+    color: #fafafa;
+    font-size: 1.6rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+}
+
+a {
+    text-decoration: none;
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+.fas {
+    cursor: pointer;
+}
+
+header {
+    height: 10vh;
+    padding: 1rem 2.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.logo {
+    width: 20rem;
+}
+
+.logo img {
+    width: 100%;
+}
+
+#nav-list {
+    list-style: none;
+    display: inline;
+}
+
+#nav-list li {
+    display: inline;
+    margin: 0 1rem;
+    font-size: 2rem;
+}
+
+.list {
+    position: relative;
+    cursor: pointer;
+}
+
+.sub-list {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    border-radius: .5rem;
+    color: #fff;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.display-sub-list {
+    display: flex;
+}
+
+.sub-links {
+    display: inline-block;
+    margin-bottom: 1rem;
+    transition: all 0.3s;
+}
+
+#menu {
+    font-size: 3rem;
+    display: none;
+}
+
+#side-bar {
+    width: 40vw;
+    height: 100vh;
+    background-color: #fff;
+    color: #029edc;
+    font-size: 1.8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    right: -1000rem;
+    transition: 0.1s ease-out;
+}
+
+.show {
+    right: 0rem;
+}
+
+#close {
+    position: absolute;
+    top: 3rem;
+    left: 3rem;
+    cursor: pointer;
+    color: #029edcc5;
+}
+
+#side-bar ul {
+    list-style: none;
+    text-transform: uppercase;
+    font-size: 1.7rem;
+    color: #029edcc5;
+    margin-top: 2rem;
+}
+
+.side-links-title {
+    font-size: 2rem;
+    text-decoration: underline;
+    text-transform: uppercase;
+}
+
+.side-links {
+    display: block;
+    font-size: 1.8rem;
+    margin: 2rem 0;
+    color: #029edcc5;
+}
+
+
+
+
+
+
+
+main {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+section {
+    margin: .5rem 0;
+}
+
+#input-container label {
+    font-size: 3rem;
+    margin-right: 1.5rem;
+    cursor: pointer;
+}
+
+#input-container input[type="text"] {
+    padding: 0.5rem 2rem;
+}
+
+#input-container button {
+    padding: 0.5rem 2rem;
+    font-weight: bold;
+}
+
+#section-2 {
+    text-align: center;
+    padding: 3rem 0;
+} 
+
+#section-2 #message {
+    margin-top: 50%;
+    /* display: none; */
+} 
+
+#weather-details {
+    display: none;
+}
+
+#weather-icon-container {
+    margin: 3rem 0;
+}
+
+#section-2 h2 {
+    margin-top: 2rem;
+}
+
+footer {
+    height: 10vh;
+    width: 100%;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+
+
+@media screen and (max-width: 600px) {
+    #nav-list {
+        display: none;
+    }
+
+    #menu {
+        display: inline;
+    }
+}
