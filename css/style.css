@@ -185,12 +185,8 @@ section {
 #section-2 {
     text-align: center;
     padding: 3rem 0;
-} 
-
-#section-2 #message {
-    margin-top: 50%;
-    /* display: none; */
-} 
+    margin-top: 10px;
+}
 
 #weather-details {
     display: none;

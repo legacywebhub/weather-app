@@ -15,9 +15,9 @@
             <li><a href="#"><i class="fas fa-home"></a></i></li>
             <li id="popular" class="list">Popular  <i class="fas fa-angle-down"></i>
                 <ul class="sub-list" id="popular-list">
-                    <li><a href="#" class="sub-links">Lagos</a></li>
-                    <li><a href="#" class="sub-links">Abuja</a></li>
-                    <li><a href="#" class="sub-links">Awka</a></li>
+                    <li><a href="#" class="sub-links" onclick="searchWeather(lagos)">Lagos</a></li>
+                    <li><a href="#" class="sub-links" onclick="searchWeather(abuja)">Abuja</a></li>
+                    <li><a href="#" class="sub-links" onclick="searchWeather(awka)">Awka</a></li>
                 </ul>
             </li>
             <li id="other-apps" class="list">Other Apps <i class="fas fa-angle-down"></i>
@@ -55,7 +55,7 @@
             <form name="my-form">
                 <div id="input-container">
                     <label for="city">Enter City:</label>
-                    <input type="text" name="city" placeholder="city e.g lagos">
+                    <input type="text" id="city" name="city" placeholder="e.g lagos">
                     <button>Submit</button>
                 </div>
             </form>
@@ -64,13 +64,12 @@
         <section id="section-2">
             <h1 id="message">No Data Is Passed Yet!</h1>
             <div id="weather-details">
-            <h1 id="city-name">Lagos</h1>
             <div id="weather-icon-container">
-                <i  id="weather-icon" class="fas fa-cloud-sun-rain fa-5x"></i>
+                <!-- <i  id="weather-icon" class="fas fa-cloud-sun-rain fa-5x"></i> -->
             </div>
             <h1 id="weather">Rain</h1>
-            <h2>Temperature: <span id="temperature">58</span>C</h2>
-            <h2>Pressure: <span id="pressure">9</span>mb</h2>
+            <h2>Temperature: <span id="temperature">58</span>&deg;C</h2>
+            <h2>Pressure: <span id="pressure">9</span>atm</h2>
             <h2>Humidity: <span id="humidity">66</span></h2>
             </div>
         </section>
