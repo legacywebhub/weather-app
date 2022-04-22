@@ -15,9 +15,9 @@
             <li><a href="#"><i class="fas fa-home"></a></i></li>
             <li id="popular" class="list">Popular  <i class="fas fa-angle-down"></i>
                 <ul class="sub-list" id="popular-list">
-                    <li><a href="#" class="sub-links" onclick="searchWeather(lagos)">Lagos</a></li>
-                    <li><a href="#" class="sub-links" onclick="searchWeather(abuja)">Abuja</a></li>
-                    <li><a href="#" class="sub-links" onclick="searchWeather(awka)">Awka</a></li>
+                    <li><a href="#" class="sub-links popular">lagos</a></li>
+                    <li><a href="#" class="sub-links popular">london</a></li>
+                    <li><a href="#" class="sub-links popular">new york</a></li>
                 </ul>
             </li>
             <li id="other-apps" class="list">Other Apps <i class="fas fa-angle-down"></i>
@@ -38,9 +38,9 @@
         </div>
         <ul>
             <li class="side-links-title">Popular Cities</li>
-            <li><a href="#" class="side-links">Lagos</a></li>
-            <li><a href="#" class="side-links">Abuja</a></li>
-            <li><a href="#" class="side-links">Awka</a></li>
+            <li><a href="#" class="side-links popular">Lagos</a></li>
+            <li><a href="#" class="side-links popular">London</a></li>
+            <li><a href="#" class="side-links popular">New York</a></li>
         </ul>
         <ul>
             <li class="side-links-title">Other apps</li>
@@ -62,15 +62,14 @@
         </section>
 
         <section id="section-2">
-            <h1 id="message">No Data Is Passed Yet!</h1>
+            <h1 id="message">No Location Is Entered Yet..</h1>
             <div id="weather-details">
-            <div id="weather-icon-container">
-                <!-- <i  id="weather-icon" class="fas fa-cloud-sun-rain fa-5x"></i> -->
-            </div>
-            <h1 id="weather">Rain</h1>
-            <h2>Temperature: <span id="temperature">58</span>&deg;C</h2>
-            <h2>Pressure: <span id="pressure">9</span>atm</h2>
-            <h2>Humidity: <span id="humidity">66</span></h2>
+                <p>(country - <span id="country">NG</span>)</p>
+                <div id="weather-icon-container"></div>
+                <h1 id="weather">Rain</h1>
+                <h2>Temperature: <span id="temperature">58</span>&deg;C</h2>
+                <h2>Pressure: <span id="pressure">9</span>atm</h2>
+                <h2>Humidity: <span id="humidity">66</span>rh</h2>
             </div>
         </section>
     </main>
