@@ -61,7 +61,7 @@ async function searchWeather(location) {
     weatherContainer.style.display = "none";
 
     const city = location || searchInput.value;
-    const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=01496641e8e04d3c4d8473dba298674b`;
+    const url = `//api.openweathermap.org/data/2.5/weather?q=${city}&appid=01496641e8e04d3c4d8473dba298674b`;
 
     //loading text animation
     message.innerHTML =  '<img id="animation" src="images/loading.gif">';
