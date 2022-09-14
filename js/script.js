@@ -18,8 +18,6 @@ const popularLocations = document.getElementsByClassName('popular'),
     form = document.forms["my-form"],
     searchInput = form["city"];
 
-let weatherIcon = '';
-
 /* --------------- Code section --------------- */
 // checking if popular locations were clicked
 for (x = 0; x < popularLocations.length; x++) {
@@ -77,33 +75,13 @@ async function searchWeather(location) {
         if (data.cod == "404") {
             // if city is not found or invalid city entered
             message.innerHTML = 'City not found or does not exist';
+            console.log("Invalid city");
         } else {
             // if city is found
-            // determining weather icon to display in the DOM
-            if (data.weather[0].main == "Sun") {
-                weatherIcon = '<i class="fas fa-sun fa-3x"></i>';
-            } else if (data.weather[0].main == "Rain") {
-                weatherIcon = '<i class="fas fa-cloud-rain fa-3x"></i>';
-            } else if (data.weather[0].main == "Clouds") {
-                weatherIcon = '<i class="fas fa-cloud fa-3x"></i>';
-            } else if (data.weather[0].main == "Clear") {
-                weatherIcon = '<i class="fa fa-sun fa-3x"></i>';
-            } else if (data.weather[0].main == "Haze") {
-                weatherIcon = '<img src="images/haze.png" width="130">';
-            } else if (data.weather[0].main == "Fog") {
-                weatherIcon = '<img src="images/fog.png" width="100">';
-            } else if (data.weather[0].main == "Snow") {
-                weatherIcon = '<img src="images/snow.png" width="100">';
-            } else if (data.weather[0].main == "Smoke") {
-                weatherIcon = '<img src="images/smoke.png" width="100">';
-            } else {
-                weatherIcon = '';
-            }
-
-            console.log("updating the DOM..");
+            console.log("City found. Updating the DOM..");
 
             // updating the DOM data
-            iconContainer.innerHTML = weatherIcon;
+            iconContainer.innerHTML = `<img src="//openweathermap.org/img/wn/${data.weather[0].icon}@2x.png">`;
             temperature.innerText = Math.round(data.main.temp - 273);
             pressure.innerText = data.main.pressure / 1000;
             humidy.innerText = Math.round(data.main.humidity);
