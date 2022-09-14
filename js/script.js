@@ -74,45 +74,51 @@ async function searchWeather(location) {
         const data = await ourRequest.json();
         console.log("data fetched:", data);
 
-        // determining weather icon to display in the DOM
-        if (data.weather[0].main == "Sun") {
-            weatherIcon = '<i class="fas fa-sun fa-3x"></i>';
-        } else if (data.weather[0].main == "Rain") {
-            weatherIcon = '<i class="fas fa-cloud-rain fa-3x"></i>';
-        } else if (data.weather[0].main == "Clouds") {
-            weatherIcon = '<i class="fas fa-cloud fa-3x"></i>';
-        } else if (data.weather[0].main == "Clear") {
-            weatherIcon = '<i class="fa fa-sun fa-3x"></i>';
-        } else if (data.weather[0].main == "Haze") {
-            weatherIcon = '<img src="images/haze.png" width="130">';
-        } else if (data.weather[0].main == "Fog") {
-            weatherIcon = '<img src="images/fog.png" width="100">';
-        } else if (data.weather[0].main == "Snow") {
-            weatherIcon = '<img src="images/snow.png" width="100">';
-        } else if (data.weather[0].main == "Smoke") {
-            weatherIcon = '<img src="images/smoke.png" width="100">';
+        if (data.cod == "404") {
+            // if city is not found or invalid city entered
+            message.innerHTML = 'City not found or does not exist';
         } else {
-            weatherIcon = '';
+            // if city is found
+            // determining weather icon to display in the DOM
+            if (data.weather[0].main == "Sun") {
+                weatherIcon = '<i class="fas fa-sun fa-3x"></i>';
+            } else if (data.weather[0].main == "Rain") {
+                weatherIcon = '<i class="fas fa-cloud-rain fa-3x"></i>';
+            } else if (data.weather[0].main == "Clouds") {
+                weatherIcon = '<i class="fas fa-cloud fa-3x"></i>';
+            } else if (data.weather[0].main == "Clear") {
+                weatherIcon = '<i class="fa fa-sun fa-3x"></i>';
+            } else if (data.weather[0].main == "Haze") {
+                weatherIcon = '<img src="images/haze.png" width="130">';
+            } else if (data.weather[0].main == "Fog") {
+                weatherIcon = '<img src="images/fog.png" width="100">';
+            } else if (data.weather[0].main == "Snow") {
+                weatherIcon = '<img src="images/snow.png" width="100">';
+            } else if (data.weather[0].main == "Smoke") {
+                weatherIcon = '<img src="images/smoke.png" width="100">';
+            } else {
+                weatherIcon = '';
+            }
+
+            console.log("updating the DOM..");
+
+            // updating the DOM data
+            iconContainer.innerHTML = weatherIcon;
+            temperature.innerText = Math.round(data.main.temp - 273);
+            pressure.innerText = data.main.pressure / 1000;
+            humidy.innerText = Math.round(data.main.humidity);
+            weather.innerText = data.weather[0].description;
+            country.innerText = data.sys.country.toUpperCase();
+            message.innerText = data.name.toUpperCase();
+
+            // displaying DOM contents
+            weatherContainer.style.display = "contents";
+
+            console.log("DOM updated");
+
+            // resetting our set input value
+            searchInput.value = '';
         }
-
-        console.log("updating the DOM..");
-
-        // updating the DOM data
-        iconContainer.innerHTML = weatherIcon;
-        temperature.innerText = Math.round(data.main.temp - 273);
-        pressure.innerText = data.main.pressure / 1000;
-        humidy.innerText = Math.round(data.main.humidity);
-        weather.innerText = data.weather[0].description;
-        country.innerText = data.sys.country.toUpperCase();
-        message.innerText = data.name.toUpperCase();
-
-        // displaying DOM contents
-        weatherContainer.style.display = "contents";
-
-        console.log("DOM updated");
-
-        // resetting our set input value
-        searchInput.value = '';
 
     } catch (err) { 
         // catching/handling errors
